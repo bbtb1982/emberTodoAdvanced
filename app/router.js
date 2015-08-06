@@ -6,6 +6,13 @@ var Router = Ember.Router.extend({
 });
 
 Router.map(function() {
+  this.route('lists', function() {
+    this.route('list', {path:'/:id'}, function() {
+      this.route('todos');
+    });
+  });
+  this.route('about');
+  this.route('contact');
 });
 
 export default Router;
