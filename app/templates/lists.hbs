@@ -10,13 +10,48 @@
 						<button type="button" class="btn btn-primary pull-right" {{action "createList"}}>Add</button>
 					</div>
 				</form>
-			
-			
+				<div class="btn-group" role="group">
+				{{#if isSortedByTitle }}
+					<button
+						type="button"
+						class="btn btn-default"
+						{{action "setSorting" "titleDesc"}}>Title <span class="glyphicon glyphicon-menu-up" aria-hidden="true"></span></button>
+				{{else}}
+					<button
+						type="button"
+						class="btn btn-default"
+						{{action "setSorting" "titleAsc"}}>Title <span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></button>
+				{{/if}}
+
+				{{#if isSortedByDate }}
+					<button
+						type="button"
+						class="btn btn-default"
+						{{action "setSorting" "dateDesc"}}>Date <span class="glyphicon glyphicon-menu-up" aria-hidden="true"></span></button>
+				{{else}}
+					<button
+						type="button"
+						class="btn btn-default"
+						{{action "setSorting" "dateAsc"}}>Date <span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></button>
+				{{/if}}
+
+				{{#if isSortedByTodoCount }}
+					<button
+						type="button"
+						class="btn btn-default"
+						{{action "setSorting" "todosCountDesc"}}>Todo Count <span class="glyphicon glyphicon-menu-up" aria-hidden="true"></span></button>
+				{{else}}
+					<button
+						type="button"
+						class="btn btn-default"
+						{{action "setSorting" "todosCountAsc"}}>Todo Count <span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></button>
+				{{/if}}
+				</div>
 			</div>
 
 			<!-- List group -->
 			<div class="list-group">
-				{{#each model as |list|}}
+				{{#each sortedList as |list|}}
 					{{#link-to "lists.list.todos" list.id class="list-group-item list-link"}}
 	  				<span class="badge">{{list.todosCount}}</span>
 	    			<h4 class="list-group-item-heading">{{list.title}}</h4>

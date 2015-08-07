@@ -31,11 +31,7 @@ export default function() {
   /*
     POST shorthands
    */
-    this.post('/lists', function(db, request){
-      var attrs = JSON.parse(request.requestBody);
-      var list = db.lists.insert(attrs);
-      return list;
-    });
+    this.post('/lists');
     
 
   /*
