@@ -20,6 +20,8 @@ export default function() {
     // this.get('/contacts');
     this.get('/lists', ['lists', 'todos']);
     this.get('/lists/:id', 'list');
+    this.get('/toos');
+
     //this.get('/todos', 'todos');
     // this.get('/contacts', ['contacts', 'addresses']);
 
@@ -32,6 +34,7 @@ export default function() {
     POST shorthands
    */
     this.post('/lists');
+    this.post('/todos');
     
 
   /*

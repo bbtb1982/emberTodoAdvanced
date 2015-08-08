@@ -10,15 +10,19 @@ export default function(server) {
   // data will not be loaded in your tests.
 
   //create todos
-  var todo, listId, todosIds, rand;
+  var todo, listId, todosIds, rand, isComplete;
   
   for(var i=0; i<5; i++){
   	listId = i+1;
   	todosIds = [];
-  	rand = getRandomIntInclusive(1, 8);
+  	rand = getRandomIntInclusive(0, 8);
   	for (var j=0; j<rand; j++) {
 
-  		todo = server.create('todo', { list:listId});
+  		todo = server.create('todo', {
+        list:listId,
+        isComplete: ( faker.random.boolean())
+        
+      });
   		todosIds.push(todo.id);
   	}
   	server.create('list', {

@@ -1,9 +1,6 @@
 import Ember from 'ember';
+import Todo from '../../models/todo';
 
 export default Ember.Controller.extend({
-	actions:{
-		createTodo: function(title){
-			
-		}
-	}
+	pendingTodos: 10
 });

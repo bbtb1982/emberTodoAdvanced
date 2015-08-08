@@ -1,7 +1,47 @@
+<div class="panel-body">
+	<form>
+		<div class="form-group">
+			{{input type="text" class="new-list form-control" placeholder="create new todo" value=title}}
+			<button type="button" class="btn btn-primary pull-right" {{action "createTodo" title}}>Add</button>
+		</div>
+	</form>
+	<div class="btn-group" role="group">
+	{{#if isSortedByTitle }}
+		<button
+			type="button"
+			class="btn btn-default"
+			{{action "setSorting" "titleDesc"}}>Title <span class="glyphicon glyphicon-menu-up" aria-hidden="true"></span></button>
+	{{else}}
+		<button
+			type="button"
+			class="btn btn-default"
+			{{action "setSorting" "titleAsc"}}>Title <span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></button>
+	{{/if}}
+
+	{{#if isSortedByDate }}
+		<button
+			type="button"
+			class="btn btn-default"
+			{{action "setSorting" "dateDesc"}}>Date <span class="glyphicon glyphicon-menu-up" aria-hidden="true"></span></button>
+	{{else}}
+		<button
+			type="button"
+			class="btn btn-default"
+			{{action "setSorting" "dateAsc"}}>Date <span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></button>
+	{{/if}}
+	</div>
+</div>
 <ul class="list-group">
-	{{#each model.todos as |todo|}}
-		<li class="list-group-item">{{todo.title}}</li>
+	{{#each sortedList as |todo|}}
+		<li class="list-group-item list-link" >
+			<div>
+				{{input type="checkbox" checked=todo.isComplete}}
+			</div>
+			<div>
+				<h4 class="list-group-item-heading">{{todo.title}}</h4>
+				<p class="list-group-item-text">{{format-date todo.createdAt}}</p>
+			</div>
+		</li>
 	{{/each}}
 </ul>
-
-{{outlet}}
+{{outlet}}		

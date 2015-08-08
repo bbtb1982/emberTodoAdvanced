@@ -1,13 +1,24 @@
 <div class="panel panel-default">
 	<!-- Default panel contents -->
-	<div class="panel-heading">{{model.title}}</div>
-	<div class="panel-body">
-		<form>
-			<div class="form-group">
-				{{input type="text" class="new-list form-control" placeholder="create todo" value=title}}
-				<button type="button" class="btn btn-primary pull-right" {{action "createTodo"}}>Add</button>
-			</div>
-		</form>
+	<div class="panel-heading">
+	<!-- Single button -->
+<div class="btn-group">
+  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Action <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu">
+    <li><a href="#">Action</a></li>
+    <li><a href="#">Another action</a></li>
+    <li><a href="#">Something else here</a></li>
+    <li role="separator" class="divider"></li>
+    <li><a href="#">Separated link</a></li>
+  </ul>
+</div>
+
+	
+
+	<span>{{model.title}}</span>
+	<span class="pull-right">menu</span>
 	</div>
 	{{outlet}}
 </div>

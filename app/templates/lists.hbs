@@ -1,13 +1,13 @@
 <div class="row">
 	<div class="col-md-6">
-		<div class="panel panel-default">
+		<div class="panel panel-default panel-list">
 			<!-- Default panel contents -->
 			<div class="panel-heading">Lists</div>
 			<div class="panel-body">
 				<form>
-					<div class="form-group">
-						{{input type="text" class="new-list form-control" placeholder="create new todo list" value=title}}
-						<button type="button" class="btn btn-primary pull-right" {{action "createList"}}>Add</button>
+					<div class="form-group new-list">
+						{{input type="text" class="form-control new-list" placeholder="create new todo list" value=title}}
+						<button type="button" class="btn btn-primary pull-right new-list-button" {{action "createList"}}>Add</button>
 					</div>
 				</form>
 				<div class="btn-group" role="group">
@@ -53,7 +53,7 @@
 			<div class="list-group">
 				{{#each sortedList as |list|}}
 					{{#link-to "lists.list.todos" list.id class="list-group-item list-link"}}
-	  				<span class="badge">{{list.todosCount}}</span>
+	  				<span class="badge">{{list.todosCount}} of {{list.pendingTodos}}</span>
 	    			<h4 class="list-group-item-heading">{{list.title}}</h4>
 	    			<p class="list-group-item-text">{{format-date list.createdAt}}</p>
 					{{/link-to}}

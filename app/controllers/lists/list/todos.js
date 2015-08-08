@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import List from '../models/list';
+
 export default Ember.Controller.extend({
 	sortBy: 'titleDesc',
 	sortProperties: Ember.computed('sortBy', function(){
@@ -8,8 +8,6 @@ export default Ember.Controller.extend({
 			'titleDesc':'title:desc',
 			'dateAsc':'createdAt:asc',
 			'dateDesc': 'createdAt:desc',
-			'todosCountAsc':'todosCount:asc',
-			'todosCountDesc': 'todosCount:desc'
 		};
 		return options[this.get('sortBy')].split(',');
 	}),
@@ -25,31 +23,24 @@ export default Ember.Controller.extend({
 		var sortBy = this.get('sortBy');
 		return sortBy.indexOf('todosCountAsc') >= 0;
 	}.property('sortBy'),
-	pendingTodos: function(){
-		debugger;
-		//Ember.computed.filterBy('model', 'isComplete', false);
-	},
-	// pendingTodosCount: Ember.compupted.length('pendingTodos'),
-	sortedList: Ember.computed.sort("model", "sortProperties"),
-    actions: {
-        createList: function() {
-            var controller,title, list;
+	sortedList: Ember.computed.sort("model.todos", "sortProperties"),
+	actions:{
+		createTodo: function(){
+            var controller, title, list, todo;
             controller = this;
             title = this.get('title');
+            list = this.get('model');
             if (!title.trim()) {
                 return;
             }
-            list = this.store.createRecord('List', {
+            todo = this.store.createRecord('todo', {
                 title: title,
-                todos: [],
-                todosCount: 0
+                list: list.id
             });
+            list.get('todos').pushObject(todo);
             this.set('title', '');
-            list.save().then(function(){
-            	controller.transitionTo('lists.list.todos', list);
-            });
         },
-        setSorting: function(option){
+         setSorting: function(option){
         	this.set('sortBy', option);
         }
     }
