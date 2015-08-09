@@ -6,6 +6,11 @@ module.exports = function(defaults) {
     // Add options here
   });
 
+  app.import('bower_components/moment/moment.js');
+  app.import('bower_components/bootstrap-sass/assets/javascripts/bootstrap.js');
+  app.import('bower_components/bootstrap-sass/assets/fonts/bootstrap/glyphicons-halflings-regular.woff', {
+    destDir: 'fonts/bootstrap/'
+  });
   // Use `app.import` to add additional libraries to the generated
   // output files.
   //
