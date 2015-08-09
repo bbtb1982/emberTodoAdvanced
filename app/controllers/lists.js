@@ -9,7 +9,9 @@ export default Ember.Controller.extend({
 			'dateAsc':'createdAt:asc',
 			'dateDesc': 'createdAt:desc',
 			'todosCountAsc':'todosCount:asc',
-			'todosCountDesc': 'todosCount:desc'
+			'todosCountDesc': 'todosCount:desc',
+			'todosCountPendingAsc':'todosCountPending:asc',
+			'todosCountPendingDesc': 'todosCountPending:desc'
 		};
 		return options[this.get('sortBy')].split(',');
 	}),

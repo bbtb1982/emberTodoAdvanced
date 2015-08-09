@@ -48,6 +48,17 @@
 						class="btn btn-default"
 						{{action "setSorting" "todosCountAsc"}}>Todo Count <span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></button>
 				{{/if}}
+				{{#if isSortedByTodoCountPending }}
+					<button
+						type="button"
+						class="btn btn-default"
+						{{action "setSorting" "todosCountPendingDesc"}}>Todo Count Pending <span class="glyphicon glyphicon-menu-up" aria-hidden="true"></span></button>
+				{{else}}
+					<button
+						type="button"
+						class="btn btn-default"
+						{{action "setSorting" "todosCountPendingAsc"}}>Todo Count Pending <span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></button>
+				{{/if}}
 				</div>
 			</div>
 
@@ -55,7 +66,11 @@
 			<div class="list-group">
 				{{#each sortedList as |list|}}
 					{{#link-to "lists.list.todos" list.id class="list-group-item list-link"}}
-					<span class="badge">{{completed-todos-count list}} of {{todos-count list}} </span>
+					{{#if list.isComplete}}
+						<span class="badge">complete</span>
+					{{else}}
+						<span class="badge"> {{list.todosCountPending}} of {{list.todosCount}} </span>
+					{{/if}}
 	    			<h4 class="list-group-item-heading">{{list.title}}</h4>
 	    			<p class="list-group-item-text">{{format-date list.createdAt}}</p>
 					{{/link-to}}

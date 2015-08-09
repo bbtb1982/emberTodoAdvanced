@@ -2,6 +2,7 @@ import Ember from 'ember';
 import Todo from '../../models/todo';
 
 export default Ember.Controller.extend({
+	yourmama: true,
 	isEditingTitle: false,
 	actions:{
 		editingList: function(){
