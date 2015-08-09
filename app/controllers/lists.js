@@ -29,9 +29,8 @@ export default Ember.Controller.extend({
 	}.property('sortBy'),
 	isSortedByTodoCountPending: function(){
 		var sortBy = this.get('sortBy');
-		return sortBy.indexOf('todosCountAsc') >= 0;
+		return sortBy.indexOf('todosCountPendingAsc') >= 0;
 	}.property('sortBy'),
-	// pendingTodosCount: Ember.compupted.length('pendingTodos'),
 	sortedList: Ember.computed.sort("model", "sortProperties"),
     actions: {
         createList: function() {
